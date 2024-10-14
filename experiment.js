@@ -495,17 +495,6 @@ var end_block = {
 };
 
 
-//Set up experiment
-var ravens_experiment = []
-ravens_experiment.push(instruction_node);
-ravens_experiment.push(practice_node_1);
-ravens_experiment.push(practice_feedback_block)
-ravens_experiment.push(practice_node_2);
-ravens_experiment.push(practice_feedback_block)
-ravens_experiment.push(start_test_block);
-ravens_experiment.push(survey_block);
-ravens_experiment.push(end_block);
-
 // 페이지에 새로운 요소 추가하는 함수
 function addFinalPage() {
   // body의 내용을 초기화
@@ -538,6 +527,18 @@ function addFinalPage() {
   // 버튼을 body에 추가
   document.body.appendChild(endButton);
 }
+
+
+//Set up experiment
+var ravens_experiment = []
+ravens_experiment.push(instruction_node);
+ravens_experiment.push(practice_node_1);
+ravens_experiment.push(practice_feedback_block)
+ravens_experiment.push(practice_node_2);
+ravens_experiment.push(practice_feedback_block)
+ravens_experiment.push(start_test_block);
+ravens_experiment.push(survey_block);
+ravens_experiment.push(end_block);
 
 // 호출 예시 (원하는 시점에 이 함수를 호출하세요)
 addFinalPage();
