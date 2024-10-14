@@ -15,6 +15,43 @@ function fillArray(value, len) {
 }
 
 
+// 여기에 addFinalPage 함수 추가
+function addFinalPage() {
+  const container = document.createElement('div');
+  container.style.position = 'absolute';
+  container.style.top = '0';
+  container.style.left = '0';
+  container.style.width = '100%';
+  container.style.height = '100%';
+  container.style.backgroundColor = 'white';
+  container.style.display = 'flex';
+  container.style.flexDirection = 'column';
+  container.style.alignItems = 'center';
+  container.style.justifyContent = 'center';
+
+  const gradeText = document.createElement('h1');
+  gradeText.innerText = '당신의 등급은 00입니다';
+  gradeText.style.textAlign = 'center';
+  container.appendChild(gradeText);
+
+  const endButton = document.createElement('button');
+  endButton.innerText = '종료하기';
+  endButton.style.marginTop = '20px';
+  endButton.style.backgroundColor = 'blue';
+  endButton.style.color = 'white';
+  endButton.style.border = 'none';
+  endButton.style.padding = '10px 20px';
+  endButton.style.fontSize = '16px';
+  endButton.style.cursor = 'pointer';
+
+  endButton.onclick = function () {
+    // 아무 일도 일어나지 않음
+  };
+
+  container.appendChild(endButton);
+  document.body.appendChild(container);
+}
+
 
 var getInstructFeedback = function() {
   return '<div class = centerbox><p class = center-block-text>' + feedback_instruct_text +
@@ -497,50 +534,8 @@ var end_block = {
 };
 
 
-// 페이지에 새로운 요소 추가하는 함수
-function addFinalPage() {
-  // body의 기존 내용을 유지하고 새로운 요소 추가
-  const container = document.createElement('div');
-
-  // 중앙에 "당신의 등급은 00입니다" 텍스트 추가
-  const gradeText = document.createElement('h1');
-  gradeText.innerText = '당신의 등급은 00입니다';
-  gradeText.style.textAlign = 'center';
-  gradeText.style.marginTop = '20%'; // 페이지 중앙에 배치되도록 상단 마진 추가
-  container.appendChild(gradeText);
-
-  // 하단에 "종료하기" 버튼 추가
-  const endButton = document.createElement('button');
-  endButton.innerText = '종료하기';
-  endButton.style.display = 'block';
-  endButton.style.margin = '20px auto'; // 버튼을 중앙에 배치
-  endButton.style.backgroundColor = 'blue';
-  endButton.style.color = 'white';
-  endButton.style.border = 'none';
-  endButton.style.padding = '10px 20px';
-  endButton.style.fontSize = '16px';
-  endButton.style.cursor = 'pointer';
-
-  // 버튼 클릭 시 아무런 동작이 없도록 설정
-  endButton.onclick = function () {
-    // 아무 일도 일어나지 않음
-  };
-
-  // container를 body에 추가
-  document.body.appendChild(container);
-}
-
-// 실험 끝난 후 페이지를 추가하는 코드
-var final_page_block = {
-  type: 'call-function',
-  func: addFinalPage,
-  data: {
-    exp_id: "ravens_final_page"
-  }
-};
-
-// Set up experiment
-var ravens_experiment = [];
+//Set up experiment
+var ravens_experiment = []
 ravens_experiment.push(instruction_node);
 ravens_experiment.push(practice_node_1);
 ravens_experiment.push(practice_feedback_block);
@@ -549,5 +544,15 @@ ravens_experiment.push(practice_feedback_block);
 ravens_experiment.push(start_test_block);
 ravens_experiment.push(survey_block);
 ravens_experiment.push(end_block);
-ravens_experiment.push(final_page_block); // 마지막 페이지 추가
+
+// 여기에 final_page_block 추가
+var final_page_block = {
+  type: 'call-function',
+  func: addFinalPage,
+  data: {
+    exp_id: "ravens_final_page"
+  }
+};
+
+ravens_experiment.push(final_page_block);
 
