@@ -17,23 +17,31 @@ function fillArray(value, len) {
 
 // 여기에 addFinalPage 함수 추가
 function addFinalPage() {
+  console.log("addFinalPage 함수가 호출되었습니다."); // 디버깅용 로그
+
+  // 기존 페이지 내용을 모두 삭제
+  document.body.innerHTML = '';
+
+  // 새 컨테이너 생성
   const container = document.createElement('div');
   container.style.position = 'absolute';
   container.style.top = '0';
   container.style.left = '0';
   container.style.width = '100%';
   container.style.height = '100%';
-  container.style.backgroundColor = 'white';
+  container.style.backgroundColor = 'white';  // 배경을 흰색으로 설정
   container.style.display = 'flex';
   container.style.flexDirection = 'column';
   container.style.alignItems = 'center';
   container.style.justifyContent = 'center';
 
+  // 중앙에 "당신의 등급은 00입니다" 텍스트 추가
   const gradeText = document.createElement('h1');
   gradeText.innerText = '당신의 등급은 00입니다';
   gradeText.style.textAlign = 'center';
   container.appendChild(gradeText);
 
+  // 하단에 "종료하기" 버튼 추가
   const endButton = document.createElement('button');
   endButton.innerText = '종료하기';
   endButton.style.marginTop = '20px';
@@ -44,11 +52,15 @@ function addFinalPage() {
   endButton.style.fontSize = '16px';
   endButton.style.cursor = 'pointer';
 
+  // 버튼 클릭 시 아무런 동작이 없도록 설정
   endButton.onclick = function () {
-    // 아무 일도 일어나지 않음
+    console.log("종료하기 버튼이 눌렸지만 동작은 없습니다."); // 디버깅용 로그
   };
 
+  // 컨테이너에 버튼 추가
   container.appendChild(endButton);
+  
+  // body에 컨테이너 추가
   document.body.appendChild(container);
 }
 
@@ -548,11 +560,14 @@ ravens_experiment.push(end_block);
 // 여기에 final_page_block 추가
 var final_page_block = {
   type: 'call-function',
-  func: addFinalPage,
+  func: function() {
+    console.log("실험 종료 후 마지막 페이지가 호출됩니다."); // 디버깅용 로그
+    addFinalPage();
+  },
   data: {
     exp_id: "ravens_final_page"
   }
 };
 
+// 마지막 페이지 추가
 ravens_experiment.push(final_page_block);
-
