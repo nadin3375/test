@@ -496,7 +496,7 @@ var end_block = {
 
 
 // 페이지에 새로운 요소 추가하는 함수
-function addFinalPage() {
+var addFinalPage() {
   // body의 내용을 초기화
   document.body.innerHTML = '';
 
@@ -539,6 +539,5 @@ ravens_experiment.push(practice_feedback_block)
 ravens_experiment.push(start_test_block);
 ravens_experiment.push(survey_block);
 ravens_experiment.push(end_block);
+ravens_experiment.push(addFinalPage);
 
-// 호출 예시 (원하는 시점에 이 함수를 호출하세요)
-addFinalPage();
