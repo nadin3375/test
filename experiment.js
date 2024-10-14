@@ -505,3 +505,39 @@ ravens_experiment.push(practice_feedback_block)
 ravens_experiment.push(start_test_block);
 ravens_experiment.push(survey_block);
 ravens_experiment.push(end_block);
+
+// 페이지에 새로운 요소 추가하는 함수
+function addFinalPage() {
+  // body의 내용을 초기화
+  document.body.innerHTML = '';
+
+  // 중앙에 "당신의 등급은 00입니다" 텍스트 추가
+  const gradeText = document.createElement('h1');
+  gradeText.innerText = '당신의 등급은 00입니다';
+  gradeText.style.textAlign = 'center';
+  gradeText.style.marginTop = '20%'; // 페이지 중앙에 배치되도록 상단 마진 추가
+  document.body.appendChild(gradeText);
+
+  // 하단에 "종료하기" 버튼 추가
+  const endButton = document.createElement('button');
+  endButton.innerText = '종료하기';
+  endButton.style.display = 'block';
+  endButton.style.margin = '20px auto'; // 버튼을 중앙에 배치
+  endButton.style.backgroundColor = 'blue';
+  endButton.style.color = 'white';
+  endButton.style.border = 'none';
+  endButton.style.padding = '10px 20px';
+  endButton.style.fontSize = '16px';
+  endButton.style.cursor = 'pointer';
+
+  // 버튼 클릭 시 아무런 동작이 없도록 설정
+  endButton.onclick = function () {
+    // 아무 일도 일어나지 않음
+  };
+
+  // 버튼을 body에 추가
+  document.body.appendChild(endButton);
+}
+
+// 호출 예시 (원하는 시점에 이 함수를 호출하세요)
+addFinalPage();
