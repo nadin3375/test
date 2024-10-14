@@ -497,32 +497,17 @@ var end_block = {
 };
 
 
-
-
-//Set up experiment
-var ravens_experiment = []
-ravens_experiment.push(instruction_node);
-ravens_experiment.push(practice_node_1);
-ravens_experiment.push(practice_feedback_block)
-ravens_experiment.push(practice_node_2);
-ravens_experiment.push(practice_feedback_block)
-ravens_experiment.push(start_test_block);
-ravens_experiment.push(survey_block);
-ravens_experiment.push(end_block);
-
-
-
 // 페이지에 새로운 요소 추가하는 함수
 function addFinalPage() {
-  // body의 내용을 초기화
-  document.body.innerHTML = '';
+  // body의 기존 내용을 유지하고 새로운 요소 추가
+  const container = document.createElement('div');
 
   // 중앙에 "당신의 등급은 00입니다" 텍스트 추가
   const gradeText = document.createElement('h1');
   gradeText.innerText = '당신의 등급은 00입니다';
   gradeText.style.textAlign = 'center';
   gradeText.style.marginTop = '20%'; // 페이지 중앙에 배치되도록 상단 마진 추가
-  document.body.appendChild(gradeText);
+  container.appendChild(gradeText);
 
   // 하단에 "종료하기" 버튼 추가
   const endButton = document.createElement('button');
@@ -541,6 +526,28 @@ function addFinalPage() {
     // 아무 일도 일어나지 않음
   };
 
-  // 버튼을 body에 추가
-  document.body.appendChild(endButton);
+  // container를 body에 추가
+  document.body.appendChild(container);
 }
+
+// 실험 끝난 후 페이지를 추가하는 코드
+var final_page_block = {
+  type: 'call-function',
+  func: addFinalPage,
+  data: {
+    exp_id: "ravens_final_page"
+  }
+};
+
+// Set up experiment
+var ravens_experiment = [];
+ravens_experiment.push(instruction_node);
+ravens_experiment.push(practice_node_1);
+ravens_experiment.push(practice_feedback_block);
+ravens_experiment.push(practice_node_2);
+ravens_experiment.push(practice_feedback_block);
+ravens_experiment.push(start_test_block);
+ravens_experiment.push(survey_block);
+ravens_experiment.push(end_block);
+ravens_experiment.push(final_page_block); // 마지막 페이지 추가
+
